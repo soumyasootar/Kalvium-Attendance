@@ -1,5 +1,5 @@
 const express = require('express');
-const { addNewUser , checkInOut , startDay } = require("./../Controllers/user.controller")
+const { addNewUser , checkInOut , startDay, getUser , getUsers } = require("./../Controllers/user.controller")
 
 const userRoute = express.Router();
 
@@ -22,6 +22,22 @@ userRoute.post("/adduser" , async (req , res) =>{
         
         let userDetails = req.body;
         let udata = await addNewUser(userDetails);
+        
+        res.send(udata);
+
+    }catch(err){
+        console.log(err.message);
+        res.status(500).send({
+            error : err.message
+        })
+    }
+})
+
+userRoute.get("/getusers" , async (req , res) =>{
+    try{
+        
+        
+        let udata = await getUsers();
         
         res.send(udata);
 

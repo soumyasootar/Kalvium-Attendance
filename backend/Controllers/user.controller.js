@@ -75,9 +75,14 @@ async function addNewUser(userDetails) {
     return usr;
 }
 
+async function getUsers(){
+    let usr = await User.find();
+    return usr;
+}
+
 async function startDay(squad_no, dayDetails) {
 
-    if (dayDetails.password == "1234") {
+    if (dayDetails.password == process.env.DAYPASSWORD ) {
 
         if (dayDetails.day_status == "end") {
 
@@ -118,20 +123,19 @@ async function checkInOut(id, room_no) {
 
             })
 
-            console.log("Check In: ", usr);
+            
             return usr;
 
         } else {
 
             let old_check_in_id = lastday_obj.check_in_list[lastday_obj.check_in_list.length - 1]._id;
 
-            console.log(old_check_in_id);
 
             let usr = await User.updateOne({ _id: id },
                 { $set: { check_in_out_status: "Checked Out", "day.$[o].check_in_list.$[i].end_time": new Date() } },
                 { arrayFilters: [{ 'o._id': lastday_obj._id }, { 'i._id': old_check_in_id }] }
             )
-            console.log("Check Out: ", usr);
+            
             return usr;
 
         }
@@ -147,6 +151,7 @@ module.exports = {
     addNewUser,
     checkInOut,
     startDay,
+    getUsers,
 
     register,
     login,
