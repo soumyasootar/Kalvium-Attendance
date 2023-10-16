@@ -3,16 +3,17 @@ import { Providers } from './providers'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import Checkin from '@/components/Checkin'
+import { Box } from '@chakra-ui/react'
 
 
 export default function Home() {
   return (
-    <main className={styles.main}>
+    <Box>
       <Providers>
         <Navbar/>
         <Checkin/>
         <Footer/>
       </Providers>
-    </main>
+    </Box>
   )
 }
