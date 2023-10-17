@@ -16,7 +16,6 @@ userRoute.get("/", (req , res )=> {
     }
 })
 
-
 userRoute.post("/adduser" , async (req , res) =>{
     try{
         
