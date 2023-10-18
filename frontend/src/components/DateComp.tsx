@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import ExtraDate from './ExtraDate'
-import { Box, Center, Text } from '@chakra-ui/react'
+import { Box, Center, HStack, Text } from '@chakra-ui/react'
 
 
-const DateComp = (nameState:any) => {
+const DateComp = (nameState: any) => {
     const [DateState, setDateState] = useState(false)
     const updateBoolean = () => {
         setDateState(!DateState)
@@ -11,10 +11,13 @@ const DateComp = (nameState:any) => {
 
     return (
         <>
-            <Center borderRadius={"5px"} bg={"pink"} m={2} onClick={updateBoolean}>
-                <Text>Start Time</Text>
+            <Center borderRadius={"5px"} bg={"yellow"} color={"black"} w={"60%"} p={5} onClick={updateBoolean} cursor={"pointer"}>
+                <HStack gap={"50px"}>
+                    <Text>Date : 12/09/2023</Text>
+                    <Text>Total Duration : 04:30 hrs</Text>
+                </HStack>
             </Center>
-            {nameState&&DateState?<ExtraDate/>:<></>}
+            {nameState && DateState ? <ExtraDate /> : <></>}
         </>
     )
 }
